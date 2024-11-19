@@ -1,5 +1,7 @@
 package dev.heimao.demo.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import dev.heimao.demo.entity.Comment;
 import dev.heimao.demo.entity.NewComment;
 import dev.heimao.demo.mapper.CommentMapper;
@@ -32,8 +34,19 @@ public class CommentController {
 
     }
 
-//    @PostMapping("/newComment")
-//    public Object getNewComment(@RequestBody NewComment newComment,@RequestHeader("sat") String token) {
-//        return commentService.getNewComment(newComment.getContent(),newComment.getAuthorId(),newComment.isFromAdmin());
-//    }
+    @PostMapping("/newComment")
+    public SaResult newComment(@RequestBody NewComment newComment) {
+        StpUtil.checkLogin();
+        Comment comment = commentService.getNewComment(newComment);
+        boolean flag = commentService.setComment(comment);
+        if (flag) {
+            return SaResult.ok("评论成功");
+        } else {
+            return SaResult.error("评论失败");
+        }
+
+
+
+    }
+
 }

@@ -56,8 +56,11 @@ public class LoginDataController {
         }
 
     }
+    //调试接口
     @GetMapping("token")
     public SaResult showToken() {
+        StpUtil.getRoleList();
+        StpUtil.checkRole("admin");
         if (StpUtil.getTokenValue()!=null) {
             return SaResult.ok((String) StpUtil.getLoginIdByToken(StpUtil.getTokenValue()));
         }        else {

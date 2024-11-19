@@ -1,6 +1,8 @@
 package dev.heimao.demo.service.Impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import dev.heimao.demo.entity.Comment;
+import dev.heimao.demo.entity.NewComment;
 import dev.heimao.demo.mapper.CommentMapper;
 import dev.heimao.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,8 @@ public class CommentServiceImp implements CommentService {
 
 
     @Autowired
-    CommentMapper commentMapper;
+    CommentMapper
+            commentMapper;
 
 
     public Comment findById(Integer id) {
@@ -44,11 +47,16 @@ public class CommentServiceImp implements CommentService {
 
     }
 
-    public Comment getNewComment(String Content, Integer authorId, boolean fromAdmin) {
-        Comment newcomment = new Comment();
-        newcomment.setContent(Content);
-        newcomment.setAuthorId(authorId);
-        newcomment.setFromAdmin(fromAdmin);
-        return newcomment;
+    public Comment getNewComment(NewComment newComment) {
+        String loginId = (String) StpUtil.getLoginId();
+        Integer authorId = Integer.parseInt(loginId.replace("User", ""));
+
+        Comment comment = new Comment();
+        comment.setAuthorId(authorId);
+        comment.setContent(newComment.getContent());
+        comment.setFromAdmin(false);
+
+        return comment;
+
     }
 }

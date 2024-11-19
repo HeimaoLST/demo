@@ -1,6 +1,7 @@
 package dev.heimao.demo.service;
 
 import dev.heimao.demo.entity.Comment;
+import dev.heimao.demo.entity.NewComment;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface CommentService {
      boolean setComment(Comment newcomment);
      boolean setAdminComment(Comment newcomment);
 
-     Comment getNewComment(String Content, Integer authorId, boolean fromAdmin);
+     Comment getNewComment(NewComment newComment);
 }
