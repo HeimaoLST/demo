@@ -11,6 +11,6 @@ public interface AdminMapper {
     @Insert("insert into admin(username,password) values(#{username},#{password})")
     void insertAdmin(Register newUser);
 
-    @Select("select * from user where username = #{username}")
+    @Select("select * from admin where username = #{username}")
     User findByName(String username);
 }

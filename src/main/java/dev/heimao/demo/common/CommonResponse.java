@@ -3,7 +3,7 @@ package dev.heimao.demo.common;
 public class CommonResponse<T> {
     private int code;
     private boolean success;
-    private String message;
+    private String msg;
     private T data;
 
 
@@ -14,7 +14,7 @@ public class CommonResponse<T> {
     public CommonResponse(int code, boolean success, String message, T data) {
         this.code = code;
         this.success = success;
-        this.message = message;
+        this.msg = message;
         this.data = data;
     }
     public boolean isSuccess() {
@@ -32,12 +32,12 @@ public class CommonResponse<T> {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {

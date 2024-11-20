@@ -14,4 +14,6 @@ public interface CommentService {
      boolean setAdminComment(Comment newcomment);
 
      Comment getNewComment(NewComment newComment);
+
+     boolean deleteComment(Integer id);
 }

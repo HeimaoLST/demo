@@ -1,6 +1,7 @@
 package dev.heimao.demo.mapper;
 
 import dev.heimao.demo.entity.Comment;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -21,4 +22,7 @@ public interface CommentMapper {
 
     @Insert("insert into comment (content,authorid,isadmin) values ( #{content},#{authorId},#{fromAdmin})")
     public void setAdminComment(Comment comment);
+
+    @Delete("delete from comment where id = #{id}")
+    public void deleteComment(Integer id);
 }

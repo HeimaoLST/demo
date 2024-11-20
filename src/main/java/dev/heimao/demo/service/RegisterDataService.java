@@ -3,6 +3,7 @@ package dev.heimao.demo.service;
 public interface RegisterDataService {
 
     boolean isUserExist(String username);
+    boolean isAdminExist(String username);
 
     boolean userRegister(String username, String password);
 

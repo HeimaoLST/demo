@@ -27,10 +27,14 @@ public class LoginDataController {
     public SaResult doLogin(@RequestBody @Validated LoginData loginData) {
         boolean flag = loginDataService.login(loginData.getUsername(), loginData.getPassword());
         Integer uid = loginDataService.getUserId(loginData.getUsername());
+        if(uid == null) {
+            return SaResult.error("登录失败");
+        }
         String ClientId = "User" + uid;
         if (flag) {
-            log.info("User: " + loginData.getUsername() + " 登录成功");
+
             StpUtil.login(ClientId);
+            log.info("User: " + loginData.getUsername() + " 登录成功");
             return SaResult.ok("登录成功");
 
 
@@ -44,6 +48,9 @@ public class LoginDataController {
     public SaResult doAdminLogin(@RequestBody @Validated LoginData loginData) {
         boolean flag = loginDataService.adminLogin(loginData.getUsername(), loginData.getPassword());
         Integer uid = loginDataService.getAdminId(loginData.getUsername());
+        if(uid == null) {
+            return SaResult.error("登录失败");
+        }
         String ClientId = "Admin" + uid;
         if (flag) {
             log.info("Admin: " + loginData.getUsername() + " 登录成功");

@@ -59,4 +59,26 @@ public class CommentServiceImp implements CommentService {
         return comment;
 
     }
+
+
+    public boolean deleteComment(Integer id) {
+
+        StpUtil.getRoleList();
+        if(StpUtil.hasRole("admin")){
+            commentMapper.deleteComment(id);
+            return true;
+        }
+        if(StpUtil.hasRole("user")){
+            Comment comment = commentMapper.findById(id);
+            String loginId = (String) StpUtil.getLoginId();
+            Integer authorId = Integer.parseInt(loginId.replace("User", ""));
+            if(comment.getAuthorId().equals(authorId)){
+                commentMapper.deleteComment(id);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
+

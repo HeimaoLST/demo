@@ -13,11 +13,16 @@ public class RegisterDataServiceImp implements RegisterDataService {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
     AdminMapper adminMapper;
 
 
     public boolean isUserExist(String username) {
         User user = userMapper.findByName(username);
+        return user != null;
+    }
+    public boolean isAdminExist(String username) {
+        User user = adminMapper.findByName(username);
         return user != null;
     }
 

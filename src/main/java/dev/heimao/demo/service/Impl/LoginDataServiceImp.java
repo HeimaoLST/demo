@@ -1,5 +1,6 @@
 package dev.heimao.demo.service.Impl;
 
+import dev.heimao.demo.entity.User;
 import dev.heimao.demo.mapper.AdminMapper;
 import dev.heimao.demo.mapper.UserMapper;
 import dev.heimao.demo.service.LoginDataService;
@@ -12,6 +13,7 @@ public class LoginDataServiceImp implements LoginDataService {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
     AdminMapper adminMapper;
 
     public boolean login(String username, String password) {
@@ -32,14 +34,24 @@ public class LoginDataServiceImp implements LoginDataService {
                 return true;
             }
         }
-        return false;
+        return true;
     }
 
     public Integer getUserId(String username) {
-        return userMapper.findByName(username).getUid();
+        User user = userMapper.findByName(username);
+        if (user != null) {
+            return user.getUid();
+        }
+
+        return null; // 或者抛出一个自定义异常
     }
+
     public Integer getAdminId(String username) {
-        return adminMapper.findByName(username).getUid();
+        User user = adminMapper.findByName(username);
+        if (user != null) {
+            return user.getUid();
+        }
+        return null; // 或者抛出一个自定义异常
     }
 }
 

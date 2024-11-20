@@ -36,10 +36,10 @@ public class RegisterDataController {
 
         if (flag) {
             log.info("Admin: " + register.getUsername() + " 注册成功");
-            return new CommonResponse<>(200, true,"注册成功", null);
+            return new CommonResponse<>(200, true,"管理员注册成功", null);
         } else {
             log.info("Admin: " + register.getUsername() + " 注册失败");
-            return new CommonResponse<>(400, false,"注册失败", null);
+            return new CommonResponse<>(400, false,"管理员注册失败", null);
         }
     }
 }
