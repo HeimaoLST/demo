@@ -86,6 +86,17 @@ public class CommentController {
         }
         return SaResult.data(CommentList);
     }
+
+    @GetMapping("/like/{id}")
+    public SaResult likeComment(@PathVariable Integer id) {
+        StpUtil.checkLogin();
+        boolean success = commentService.likeComment(id);
+        if (success) {
+            return SaResult.ok("Liked comment");
+        } else {
+            return SaResult.error("Failed to like comment");
+        }
+    }
 }
 
 

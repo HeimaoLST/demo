@@ -18,4 +18,7 @@ public interface CommentService {
      boolean deleteComment(Integer id);
 
      List<Comment> findByAuthorId(Integer authorId);
+
+     boolean likeComment(Integer commentId);
+
 }

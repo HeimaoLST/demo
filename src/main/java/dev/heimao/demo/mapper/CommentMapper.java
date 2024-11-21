@@ -1,10 +1,7 @@
 package dev.heimao.demo.mapper;
 
 import dev.heimao.demo.entity.Comment;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -29,4 +26,8 @@ public interface CommentMapper {
 
     @Select("select * from comment where authorid = #{authorId}")
     List<Comment> findByAuthorId(Integer authorId);
+
+    @Update("UPDATE comment SET likecount = likecount + 1 WHERE id = #{id}")
+    int incrementLikeCount(Integer id);
 }
+

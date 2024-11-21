@@ -84,5 +84,10 @@ public class CommentServiceImp implements CommentService {
     public List<Comment> findByAuthorId(Integer authorId) {
         return commentMapper.findByAuthorId(authorId);
     }
+
+    @Override
+    public boolean likeComment(Integer commentId) {
+        return commentMapper.incrementLikeCount(commentId) > 0;
+    }
 }
 

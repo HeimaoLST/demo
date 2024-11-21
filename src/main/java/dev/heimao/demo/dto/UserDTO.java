@@ -2,7 +2,11 @@ package dev.heimao.demo.dto;
 
 import dev.heimao.demo.entity.User;
 
-public class UserDTO {
+public class
+
+
+
+UserDTO {
 
 
     private Integer uid;

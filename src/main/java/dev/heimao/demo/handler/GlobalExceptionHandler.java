@@ -1,5 +1,6 @@
 package dev.heimao.demo.handler;
 
+import cn.dev33.satoken.exception.SaTokenException;
 import cn.dev33.satoken.util.SaResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -10,6 +11,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public SaResult handlerException(Exception e) {
         e.printStackTrace();
-        return SaResult.error("Error!!!!,please call the administrator");
+        return SaResult.error(e.getMessage());
     }
+
+
+
 }
