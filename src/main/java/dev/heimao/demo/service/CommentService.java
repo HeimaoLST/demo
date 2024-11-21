@@ -16,4 +16,6 @@ public interface CommentService {
      Comment getNewComment(NewComment newComment);
 
      boolean deleteComment(Integer id);
+
+     List<Comment> findByAuthorId(Integer authorId);
 }

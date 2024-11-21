@@ -3,8 +3,11 @@ package dev.heimao.demo.controller;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import dev.heimao.demo.common.CommonResponse;
+import dev.heimao.demo.dto.UserDTO;
 import dev.heimao.demo.entity.LoginData;
+import dev.heimao.demo.entity.User;
 import dev.heimao.demo.service.LoginDataService;
+import dev.heimao.demo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +25,27 @@ public class LoginDataController {
     @Autowired
     LoginDataService loginDataService;
 
+    @Autowired
+    UserService userService;
+
 
     @PostMapping("/login")
     public SaResult doLogin(@RequestBody @Validated LoginData loginData) {
         boolean flag = loginDataService.login(loginData.getUsername(), loginData.getPassword());
         Integer uid = loginDataService.getUserId(loginData.getUsername());
+        User user = userService.findByName(loginData.getUsername());
         if(uid == null) {
             return SaResult.error("登录失败");
         }
         String ClientId = "User" + uid;
+        UserDTO userDTO = new UserDTO(user);
+
         if (flag) {
 
             StpUtil.login(ClientId);
             log.info("User: " + loginData.getUsername() + " 登录成功");
-            return SaResult.ok("登录成功");
+
+            return SaResult.data(userDTO);
 
 
         } else {
@@ -48,14 +58,17 @@ public class LoginDataController {
     public SaResult doAdminLogin(@RequestBody @Validated LoginData loginData) {
         boolean flag = loginDataService.adminLogin(loginData.getUsername(), loginData.getPassword());
         Integer uid = loginDataService.getAdminId(loginData.getUsername());
+        User user = userService.findAdminByName(loginData.getUsername());
+
         if(uid == null) {
             return SaResult.error("登录失败");
         }
         String ClientId = "Admin" + uid;
+        UserDTO userDTO = new UserDTO(user);
         if (flag) {
             log.info("Admin: " + loginData.getUsername() + " 登录成功");
             StpUtil.login(ClientId);
-            return SaResult.ok("登录成功");
+            return SaResult.data(userDTO);
         }
         else {
             log.info("Admin: " + loginData.getUsername() + " 登录失败");

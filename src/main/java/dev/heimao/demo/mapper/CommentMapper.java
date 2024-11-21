@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+
 @Mapper
 public interface CommentMapper {
 
@@ -25,4 +26,7 @@ public interface CommentMapper {
 
     @Delete("delete from comment where id = #{id}")
     public void deleteComment(Integer id);
+
+    @Select("select * from comment where authorid = #{authorId}")
+    List<Comment> findByAuthorId(Integer authorId);
 }

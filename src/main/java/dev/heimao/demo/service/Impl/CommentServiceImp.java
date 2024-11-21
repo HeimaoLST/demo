@@ -80,5 +80,9 @@ public class CommentServiceImp implements CommentService {
         return false;
     }
 
+    @Override
+    public List<Comment> findByAuthorId(Integer authorId) {
+        return commentMapper.findByAuthorId(authorId);
+    }
 }
 

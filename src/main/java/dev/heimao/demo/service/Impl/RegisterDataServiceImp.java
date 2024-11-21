@@ -22,7 +22,7 @@ public class RegisterDataServiceImp implements RegisterDataService {
         return user != null;
     }
     public boolean isAdminExist(String username) {
-        User user = adminMapper.findByName(username);
+        User user = adminMapper.findAdminByName(username);
         return user != null;
     }
 

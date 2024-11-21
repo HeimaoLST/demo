@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -28,6 +30,8 @@ public class CommentController {
      return comment;
 
     }
+
+
     @GetMapping("/getAll")
     public Object findAll() {
         StpUtil.checkLogin();
@@ -73,6 +77,15 @@ public class CommentController {
             }
 
         }
+    @GetMapping("/getByAuthorId/{authorId}")
+    public SaResult findByAuthorId(@PathVariable("authorId") Integer authorId) {
+        StpUtil.checkLogin();
+        List<Comment> CommentList =  commentService.findByAuthorId(authorId);
+        if(CommentList == null){
+            return SaResult.ok("无评论");
+        }
+        return SaResult.data(CommentList);
     }
+}
 
 

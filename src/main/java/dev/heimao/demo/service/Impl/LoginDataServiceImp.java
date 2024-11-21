@@ -29,8 +29,8 @@ public class LoginDataServiceImp implements LoginDataService {
 
     @Override
     public boolean adminLogin(String username, String password) {
-        if(adminMapper.findByName(username) != null){
-            if(adminMapper.findByName(username).getPassword().equals(password)){
+        if(adminMapper.findAdminByName(username) != null){
+            if(adminMapper.findAdminByName(username).getPassword().equals(password)){
                 return true;
             }
         }
@@ -47,7 +47,7 @@ public class LoginDataServiceImp implements LoginDataService {
     }
 
     public Integer getAdminId(String username) {
-        User user = adminMapper.findByName(username);
+        User user = adminMapper.findAdminByName(username);
         if (user != null) {
             return user.getUid();
         }

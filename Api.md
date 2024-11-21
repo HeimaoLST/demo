@@ -141,7 +141,7 @@ GET /api/getAll
 ```json
 [
     {
-        "id": 2,
+        "uid": 2,
         "content": "你好",
         "likeCount": 0,
         "authorId": 1,
@@ -155,7 +155,7 @@ GET /api/getAll
 (需要登陆)
 
 ```http
-GET /api/delete/{id}
+GET /api/delete/{uid}
 ```
 
 

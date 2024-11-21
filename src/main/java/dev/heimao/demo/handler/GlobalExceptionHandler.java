@@ -10,6 +10,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public SaResult handlerException(Exception e) {
         e.printStackTrace();
-        return SaResult.error(e.getMessage());
+        return SaResult.error("Error!!!!,please call the administrator");
     }
 }
