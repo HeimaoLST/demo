@@ -7,7 +7,7 @@
 * 用户注册
 
 ```http
-POST /api/register
+POST /api/register 
 ```
 
 request:
@@ -158,5 +158,35 @@ GET /api/getAll
 GET /api/delete/{uid}
 ```
 
+### 点赞评论 
 
+```http
+GET /api/like/{id}
+```
+
+### 获取某个用户评论
+
+```http
+GET /api/getByAuthorId/{authorId}
+```
+
+
+
+## 用户操作
+
+
+
+### 获取所有用户
+
+```http
+GET /api/admin/getAllUser
+```
+
+
+
+### 删除某个用户
+
+```http
+GET /api/admin/deleteUser/{id}
+```
 

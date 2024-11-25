@@ -1,8 +1,10 @@
 package dev.heimao.demo.controller;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import dev.heimao.demo.common.CommonResponse;
+import dev.heimao.demo.common.LoginResponse;
 import dev.heimao.demo.dto.UserDTO;
 import dev.heimao.demo.entity.LoginData;
 import dev.heimao.demo.entity.User;
@@ -40,12 +42,15 @@ public class LoginDataController {
         String ClientId = "User" + uid;
         UserDTO userDTO = new UserDTO(user);
 
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        LoginResponse Data = new LoginResponse(userDTO, tokenInfo);
+
         if (flag) {
 
             StpUtil.login(ClientId);
             log.info("User: " + loginData.getUsername() + " 登录成功");
 
-            return SaResult.data(userDTO);
+            return SaResult.data(Data);
 
 
         } else {
