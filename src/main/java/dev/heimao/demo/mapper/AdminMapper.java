@@ -13,7 +13,7 @@ public interface AdminMapper {
 
     @Select("select * from admin where username = #{username}")
     User findAdminByName(String username);
-
-    @Select("select * from user where uid = #{uid}")
+//    @Select("select * from user where uid = #{uid}")
+    @Select("select * from admin where uid = #{uid}")
     User findById(Integer uid);
 }
