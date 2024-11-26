@@ -76,16 +76,22 @@ public class CommentServiceImp implements CommentService {
 
     public Comment getNewComment(NewComment newComment) {
         String loginId = (String) StpUtil.getLoginId();
-        Integer authorId = Integer.parseInt(loginId.replace("User", ""));
+        Integer authorId;
+        boolean isAdmin = false;
+
+        if (loginId.startsWith("Admin")) {
+            authorId = Integer.parseInt(loginId.replace("Admin", ""));
+            isAdmin = true;
+        } else {
+            authorId = Integer.parseInt(loginId.replace("User", ""));
+        }
 
         Comment comment = new Comment();
         comment.setAuthorId(authorId);
         comment.setContent(newComment.getContent());
-        comment.setFromAdmin(false);
-
+        comment.setFromAdmin(isAdmin);
         comment.setCreateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         return comment;
-
     }
 
 

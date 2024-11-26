@@ -47,7 +47,7 @@ public class RegisterDataServiceImp implements RegisterDataService {
             return false;
         }
 
-        if(!isUserExist(username)){
+        if(!isAdminExist(username)){
             Register newUser = new Register();
             newUser.setUsername(username);
             newUser.setPassword(password);

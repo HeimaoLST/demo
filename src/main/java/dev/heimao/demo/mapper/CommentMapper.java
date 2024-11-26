@@ -15,10 +15,10 @@ public interface CommentMapper {
     @Select("select * from comment")
     public List<Comment> findAll();
 
-    @Insert("insert into comment (content,authorid,createdate) values ( #{content},#{authorId},#{createTime})")
+    @Insert("insert into comment (content,authorid,createdate) values ( #{content},#{authorId},#{createDate})")
     public void setComment(Comment comment);
 
-    @Insert("insert into comment (content,authorid,isadmin,createdate) values ( #{content},#{authorId},#{fromAdmin},#{createTime})")
+    @Insert("insert into comment (content,authorid,isadmin,createdate) values ( #{content},#{authorId},#{fromAdmin},#{createDate})")
     public void setAdminComment(Comment comment);
 
     @Delete("delete from comment where id = #{id}")

@@ -70,10 +70,14 @@ public class LoginDataController {
         }
         String ClientId = "Admin" + uid;
         UserDTO userDTO = new UserDTO(user);
+
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        LoginResponse Data = new LoginResponse(userDTO, tokenInfo);
+
         if (flag) {
             log.info("Admin: " + loginData.getUsername() + " 登录成功");
             StpUtil.login(ClientId);
-            return SaResult.data(userDTO);
+            return SaResult.data(Data);
         }
         else {
             log.info("Admin: " + loginData.getUsername() + " 登录失败");
