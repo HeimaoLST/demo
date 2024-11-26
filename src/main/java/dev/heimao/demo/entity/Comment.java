@@ -21,14 +21,14 @@ public class Comment {
 
 
     public boolean isFromAdmin() {
-        return fromAdmin;
+        return isAdmin;
     }
 
     public void setFromAdmin(boolean fromAdmin) {
-        this.fromAdmin = fromAdmin;
+        this.isAdmin = fromAdmin;
     }
 
-    private boolean fromAdmin;
+    private boolean isAdmin;
 
     public Integer getId() {
         return id;

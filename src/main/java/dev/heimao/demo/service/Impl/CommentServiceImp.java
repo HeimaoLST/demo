@@ -47,6 +47,7 @@ public class CommentServiceImp implements CommentService {
             User user;
             if(comment.isFromAdmin()){
                 user = adminMapper.findById(comment.getAuthorId());
+//                System.out.println("admin");
             }
             else {
                 user = userMapper.findById(comment.getAuthorId());

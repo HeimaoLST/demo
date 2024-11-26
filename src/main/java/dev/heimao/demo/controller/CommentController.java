@@ -6,6 +6,7 @@ import dev.heimao.demo.entity.Comment;
 import dev.heimao.demo.entity.NewComment;
 import dev.heimao.demo.mapper.CommentMapper;
 import dev.heimao.demo.service.CommentService;
+import dev.heimao.demo.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class CommentController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    LogService logService;
 
 
     @GetMapping("/get/{id}")
