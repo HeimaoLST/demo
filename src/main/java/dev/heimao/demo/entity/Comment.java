@@ -1,11 +1,24 @@
 package dev.heimao.demo.entity;
 
+import java.util.Date;
+
 public class Comment {
 
     private Integer id;
     private String content;
     private Integer likeCount;
     private Integer authorId;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+    private String createDate;
+
+
+
 
     public boolean isFromAdmin() {
         return fromAdmin;
